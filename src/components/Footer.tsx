@@ -1,3 +1,4 @@
+import { SITE_TITLE } from '@/configs/site';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -6,8 +7,8 @@ const date = new Date();
 
 const Footer = () => {
   return (
-    <footer className="text-gray-600 body-font">
-      <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <footer className="text-gray-600 body-font border-t-2 ">
+      <div className="px-5 py-4 mx-auto max-w-7xl flex items-center sm:flex-row flex-col">
         <Link
           href={'/'}
           className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
@@ -19,10 +20,10 @@ const Footer = () => {
             height="20"
             className="mr-2"
           />
-          <span className="ml-3 text-xl">AmmaJaan</span>
+          <span className="ml-3 text-xl">{SITE_TITLE}</span>
         </Link>
         <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          © {date.getFullYear()} AmmaJaan —
+          © {date.getFullYear()} {SITE_TITLE} —
           <a
             href="https://github.com/shivamvijaywargi"
             className="text-gray-600 ml-1"

@@ -11,9 +11,12 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuTriggerNoIcon,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import Image from 'next/image';
+import { SITE_TITLE } from '@/configs/site';
+import { Menu, ShoppingBag, User2 } from 'lucide-react';
 // import { Icons } from '@/components/icons';
 
 const components: { title: string; href: string; description: string }[] = [
@@ -56,80 +59,82 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function Navbar() {
   return (
-    <NavigationMenu className="justify-start border border-b-2">
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href={'/'} legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Image
-                src={'/ammajaan-logo.svg'}
-                alt="AmmaJaan"
-                width="20"
-                height="20"
-                className="mr-2"
-              />
-              AmmaJaan
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    {/* <Icons.logo className="h-6 w-6" /> */}
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+    <header>
+      <NavigationMenu className="justify-start border-b-2">
+        <NavigationMenuList className="max-w-7xl mx-auto px-2 md:px-7 justify-between md:justify-start w-screen">
+          {/* Mobile Nav - Hamburger Menu */}
+          <div className="flex md:block">
+            <NavigationMenuItem className="md:hidden z-10">
+              <NavigationMenuTriggerNoIcon className="px-2 md:px-4">
+                <Menu />
+              </NavigationMenuTriggerNoIcon>
+              <NavigationMenuContent>
+                <ul className="grid w-[375px] gap-3 p-4">
+                  {components.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={'/'} legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={cn(navigationMenuTriggerStyle(), '-ml-4 md:-ml-0')}
                 >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+                  <Image
+                    src={'/ammajaan-logo.svg'}
+                    alt="AmmaJaan"
+                    width="20"
+                    height="20"
+                    className="mr-2"
+                  />
+                  {SITE_TITLE}
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </div>
+
+          <div className="flex md:hidden">
+            <NavigationMenuItem className="mr-3">
+              <ShoppingBag />
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <User2 />
+            </NavigationMenuItem>
+          </div>
+
+          <NavigationMenuItem className="hidden md:block">
+            <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {components.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                  >
+                    {component.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="hidden md:block">
+            <Link href="/hot-offers" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Hot Offers
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </header>
   );
 }
 

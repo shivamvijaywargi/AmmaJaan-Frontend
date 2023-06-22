@@ -62,6 +62,21 @@ const NavigationMenuTrigger = React.forwardRef<
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
 
+const NavigationMenuTriggerNoIcon = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <NavigationMenuPrimitive.Trigger
+    ref={ref}
+    className={cn(navigationMenuTriggerStyle(), 'group', className)}
+    {...props}
+  >
+    {children}
+  </NavigationMenuPrimitive.Trigger>
+));
+NavigationMenuTriggerNoIcon.displayName =
+  NavigationMenuPrimitive.Trigger.displayName;
+
 const NavigationMenuContent = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
@@ -122,6 +137,7 @@ export {
   NavigationMenuItem,
   NavigationMenuContent,
   NavigationMenuTrigger,
+  NavigationMenuTriggerNoIcon,
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,

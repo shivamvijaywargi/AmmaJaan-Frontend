@@ -1,3 +1,7 @@
 export default function Home() {
-  return <section className="">Welcome to AmmaJaan</section>;
+  return (
+    <section className="container mx-auto max-w-7xl">
+      Welcome to AmmaJaan
+    </section>
+  );
 }
