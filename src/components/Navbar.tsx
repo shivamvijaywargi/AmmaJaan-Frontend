@@ -59,9 +59,9 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function Navbar() {
   return (
-    <header>
-      <NavigationMenu className="justify-start border-b-2">
-        <NavigationMenuList className="max-w-7xl mx-auto px-2 md:px-7 justify-between md:justify-start w-screen">
+    <header className="border-b-2">
+      <NavigationMenu className="justify-start max-w-7xl mx-auto">
+        <NavigationMenuList className="px-2  md:px-1 justify-between w-screen md:w-full">
           {/* Mobile Nav - Hamburger Menu */}
           <div className="flex md:block">
             <NavigationMenuItem className="md:hidden z-10">
