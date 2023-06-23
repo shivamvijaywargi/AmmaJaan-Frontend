@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import Image from 'next/image';
 import { SITE_TITLE } from '@/configs/site';
-import { Menu, ShoppingBag, User2 } from 'lucide-react';
+import { Heart, Menu, ShoppingBag, ShoppingCart, User2 } from 'lucide-react';
 import { Input } from './ui/input';
 import { Button, buttonVariants } from './ui/button';
 // import { Icons } from '@/components/icons';
@@ -115,17 +115,92 @@ export default function Navbar() {
                   id="search"
                   className="w-96 max-w-lg"
                   placeholder="Search"
+                  autoComplete="off"
                 />
                 <Button>Search</Button>
               </NavigationMenuItem>
             </div>
-            {/* Nav icons */}
-            <div className="flex">
+            {/* Mobile Nav icons */}
+            <div className="flex md:hidden">
               <NavigationMenuItem className="mr-3">
-                <ShoppingBag />
+                <Link href={'/cart'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      '-ml-4 md:-ml-0'
+                    )}
+                  >
+                    <ShoppingCart />
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <User2 />
+                <Link href={'/profile'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      '-ml-4 md:-ml-0'
+                    )}
+                  >
+                    <User2 />
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </div>
+
+            {/* Desktop Nav icons */}
+            <div className="hidden md:flex text-gray-700 space-x-4">
+              <NavigationMenuItem>
+                <Link href={'/cart'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      'flex flex-col justify-center items-center h-14 w-14'
+                    )}
+                  >
+                    <ShoppingBag />
+                    Wishlist
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href={'/cart'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      'flex flex-col justify-center items-center h-14 w-14'
+                    )}
+                  >
+                    <User2 />
+                    Profile
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href={'/cart'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      'flex flex-col justify-center items-center h-14 w-14'
+                    )}
+                  >
+                    <Heart />
+                    Orders
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href={'/cart'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      'flex flex-col justify-center items-center h-14 w-14'
+                    )}
+                  >
+                    <ShoppingCart />
+                    Cart
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             </div>
           </NavigationMenuList>
@@ -155,6 +230,20 @@ export default function Navbar() {
             <Link href="/hot-offers" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Hot Offers
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="hidden md:block">
+            <Link href="/hot-offers" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Newly Launched
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="hidden md:block">
+            <Link href="/hot-offers" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Best Sellers
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
