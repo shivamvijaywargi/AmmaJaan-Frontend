@@ -59,56 +59,71 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function Navbar() {
   return (
-    <header className="border-b-2">
+    <header className="border-b-2 bg-white">
+      <div className="border-b-2">
+        {/* Main Menu */}
+        <NavigationMenu className="justify-start max-w-7xl mx-auto">
+          <NavigationMenuList className="px-2 md:px-1 justify-between w-screen md:w-full">
+            {/* Mobile Nav - Hamburger Menu */}
+            <div className="flex md:block">
+              <NavigationMenuItem className="md:hidden z-10">
+                <NavigationMenuTriggerNoIcon className="px-2 md:px-4">
+                  <Menu />
+                </NavigationMenuTriggerNoIcon>
+                <NavigationMenuContent>
+                  <ul className="grid w-[375px] gap-3 p-4">
+                    {components.map((component) => (
+                      <ListItem
+                        key={component.title}
+                        title={component.title}
+                        href={component.href}
+                      >
+                        {component.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href={'/'} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      '-ml-4 md:-ml-0'
+                    )}
+                  >
+                    <Image
+                      src={'/ammajaan-logo.svg'}
+                      alt="AmmaJaan"
+                      width="20"
+                      height="20"
+                      className="mr-2"
+                    />
+                    {SITE_TITLE}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </div>
+            {/* Search Box */}
+            <NavigationMenuItem className="hidden md:block">
+              <input type="text" name="search" id="search" />
+            </NavigationMenuItem>
+            .{/* Mobile Nav icons */}
+            <div className="flex md:hidden">
+              <NavigationMenuItem className="mr-3">
+                <ShoppingBag />
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <User2 />
+              </NavigationMenuItem>
+            </div>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+
+      {/* Second Menu with categories and other links */}
       <NavigationMenu className="justify-start max-w-7xl mx-auto">
-        <NavigationMenuList className="px-2  md:px-1 justify-between w-screen md:w-full">
-          {/* Mobile Nav - Hamburger Menu */}
-          <div className="flex md:block">
-            <NavigationMenuItem className="md:hidden z-10">
-              <NavigationMenuTriggerNoIcon className="px-2 md:px-4">
-                <Menu />
-              </NavigationMenuTriggerNoIcon>
-              <NavigationMenuContent>
-                <ul className="grid w-[375px] gap-3 p-4">
-                  {components.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href={'/'} legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(navigationMenuTriggerStyle(), '-ml-4 md:-ml-0')}
-                >
-                  <Image
-                    src={'/ammajaan-logo.svg'}
-                    alt="AmmaJaan"
-                    width="20"
-                    height="20"
-                    className="mr-2"
-                  />
-                  {SITE_TITLE}
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </div>
-
-          <div className="flex md:hidden">
-            <NavigationMenuItem className="mr-3">
-              <ShoppingBag />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <User2 />
-            </NavigationMenuItem>
-          </div>
-
+        <NavigationMenuList className="px-1">
           <NavigationMenuItem className="hidden md:block">
             <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
             <NavigationMenuContent>

@@ -7,7 +7,7 @@ const date = new Date();
 
 const Footer = () => {
   return (
-    <footer className="text-gray-600 body-font border-t-2 ">
+    <footer className="text-gray-600 body-font border-t-2 bg-white">
       <div className="px-5 py-4 mx-auto max-w-7xl flex items-center sm:flex-row flex-col">
         <Link
           href={'/'}
