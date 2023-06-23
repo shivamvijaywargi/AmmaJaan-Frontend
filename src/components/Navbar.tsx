@@ -65,7 +65,7 @@ export default function Navbar() {
       <div className="border-b-2 py-3">
         {/* Main Menu */}
         <NavigationMenu className="justify-start max-w-7xl mx-auto">
-          <NavigationMenuList className="px-2 md:pl-1 md:pr-4 justify-between w-screen md:w-[1280px]">
+          <NavigationMenuList className="px-2 md:pl-1 md:pr-4 flex justify-between max-w-7xl w-screen">
             {/* Mobile Nav - Hamburger Menu */}
             <div className="flex md:block">
               <NavigationMenuItem className="md:hidden z-10">
