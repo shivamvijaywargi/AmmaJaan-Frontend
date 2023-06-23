@@ -17,6 +17,8 @@ import {
 import Image from 'next/image';
 import { SITE_TITLE } from '@/configs/site';
 import { Menu, ShoppingBag, User2 } from 'lucide-react';
+import { Input } from './ui/input';
+import { Button, buttonVariants } from './ui/button';
 // import { Icons } from '@/components/icons';
 
 const components: { title: string; href: string; description: string }[] = [
@@ -60,10 +62,10 @@ const components: { title: string; href: string; description: string }[] = [
 export default function Navbar() {
   return (
     <header className="border-b-2 bg-white">
-      <div className="border-b-2">
+      <div className="border-b-2 py-3">
         {/* Main Menu */}
         <NavigationMenu className="justify-start max-w-7xl mx-auto">
-          <NavigationMenuList className="px-2 md:px-1 justify-between w-screen md:w-full">
+          <NavigationMenuList className="px-2 md:pl-1 md:pr-4 justify-between w-screen md:w-[1280px]">
             {/* Mobile Nav - Hamburger Menu */}
             <div className="flex md:block">
               <NavigationMenuItem className="md:hidden z-10">
@@ -105,11 +107,20 @@ export default function Navbar() {
               </NavigationMenuItem>
             </div>
             {/* Search Box */}
-            <NavigationMenuItem className="hidden md:block">
-              <input type="text" name="search" id="search" />
-            </NavigationMenuItem>
-            .{/* Mobile Nav icons */}
-            <div className="flex md:hidden">
+            <div>
+              <NavigationMenuItem className="hidden md:flex">
+                <Input
+                  type="text"
+                  name="search"
+                  id="search"
+                  className="w-96 max-w-lg"
+                  placeholder="Search"
+                />
+                <Button>Search</Button>
+              </NavigationMenuItem>
+            </div>
+            {/* Nav icons */}
+            <div className="flex">
               <NavigationMenuItem className="mr-3">
                 <ShoppingBag />
               </NavigationMenuItem>
