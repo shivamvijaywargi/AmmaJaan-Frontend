@@ -63,8 +63,8 @@ const Register = () => {
       onSuccess: (data) => {
         store.setRequestLoading(false);
         store.setAuthUser({
-          accessToken: data?.data?.accessToken,
-          role: data?.data?.user?.role,
+          accessToken: data?.accessToken,
+          role: data?.user?.role,
         });
         toast.success('Registration successful');
         router.push('/');
