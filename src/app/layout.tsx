@@ -1,8 +1,7 @@
-import Navbar from '@/components/layout/Navbar';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Footer from '@/components/layout/Footer';
 import { cn } from '@/lib/utils';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, 'bg-gray-50')}>
-        <Navbar />
         {children}
-        <Footer />
+
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );
