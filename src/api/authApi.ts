@@ -1,4 +1,5 @@
 import { loginUserPayload } from '@/components/auth/Login';
+import { registerUserPayload } from '@/components/auth/Register';
 import { IAuthResponse } from '@/types';
 import axios from 'axios';
 
@@ -16,7 +17,7 @@ export const loginUserFn = async (user: loginUserPayload) => {
   return response;
 };
 
-// export const registerUserFn = async (user: registerUserPayload) => {
-//   const response = await authApi.post<IAuthResponse>('/auth/new', user);
-//   return response;
-// };
+export const registerUserFn = async (user: registerUserPayload) => {
+  const response = await authApi.post<IAuthResponse>('/auth/new', user);
+  return response;
+};

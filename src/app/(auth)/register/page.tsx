@@ -1,26 +1,27 @@
 import Login from '@/components/auth/Login';
+import Register from '@/components/auth/Register';
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Sign in to AmmaJaan',
-  description: 'Sign in to your account to checkout',
+  title: 'Create an AmmaJaan account',
+  description: 'Sign up for an AmmaJaan account to checkout',
 };
 
 const page = () => {
   return (
     <section>
       <div className="bg-white p-4 md:px-16 md:py-10 rounded border">
-        <Login />
+        <Register />
       </div>
       <div className="mt-6 mb-2 text-gray-600 text-center">
-        Don&lsquo;t already have an account?{' '}
+        Already have an account?{' '}
       </div>
-      <Link href={'/register'}>
+      <Link href={'/login'}>
         <Button className="w-full" variant={'outline'}>
-          Register
+          Login
         </Button>
       </Link>
     </section>
