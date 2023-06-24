@@ -19,6 +19,7 @@ import { SITE_TITLE } from '@/configs/site';
 import { Heart, Menu, ShoppingBag, ShoppingCart, User2 } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Button, buttonVariants } from '../ui/button';
+import useAuthStore, { useAccessToken } from '@/stores/authStore';
 // import { Icons } from '@/components/icons';
 
 const components: { title: string; href: string; description: string }[] = [
@@ -60,6 +61,8 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function Navbar() {
+  const token = useAccessToken();
+
   return (
     <header className="border-b-2 bg-white">
       <div className="border-b-2 py-3">
@@ -151,7 +154,7 @@ export default function Navbar() {
             {/* Desktop Nav icons */}
             <div className="hidden md:flex text-gray-700 space-x-4">
               <NavigationMenuItem>
-                <Link href={'/cart'} legacyBehavior passHref>
+                <Link href={'/wishlist'} legacyBehavior passHref>
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
@@ -164,7 +167,11 @@ export default function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href={'/cart'} legacyBehavior passHref>
+                <Link
+                  href={token ? '/profile' : '/login'}
+                  legacyBehavior
+                  passHref
+                >
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
@@ -172,12 +179,12 @@ export default function Navbar() {
                     )}
                   >
                     <User2 />
-                    Profile
+                    {token ? 'Profile' : 'Login'}
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href={'/cart'} legacyBehavior passHref>
+                <Link href={'/orders'} legacyBehavior passHref>
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),

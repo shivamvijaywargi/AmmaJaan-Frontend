@@ -1,7 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import { Toaster } from 'sonner';
+import Providers from '@/components/layouts/Providers';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, 'bg-gray-50')}>
-        {children}
+        <Providers>
+          {children}
 
-        <Toaster richColors position="top-center" />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
