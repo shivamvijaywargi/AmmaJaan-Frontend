@@ -51,7 +51,6 @@ const Login = () => {
       },
       onSuccess: (data) => {
         store.setRequestLoading(false);
-        console.log(data);
         store.setAuthUser({
           accessToken: data?.data?.accessToken,
           role: data?.data?.user?.role,
