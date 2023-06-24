@@ -17,8 +17,8 @@ import {
 import Image from 'next/image';
 import { SITE_TITLE } from '@/configs/site';
 import { Heart, Menu, ShoppingBag, ShoppingCart, User2 } from 'lucide-react';
-import { Input } from './ui/input';
-import { Button, buttonVariants } from './ui/button';
+import { Input } from '../ui/input';
+import { Button, buttonVariants } from '../ui/button';
 // import { Icons } from '@/components/icons';
 
 const components: { title: string; href: string; description: string }[] = [
