@@ -20,6 +20,8 @@ import { Heart, Menu, ShoppingBag, ShoppingCart, User2 } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Button, buttonVariants } from '../ui/button';
 import useAuthStore, { useAccessToken } from '@/stores/authStore';
+import NotLoggedInNav from './NotLoggedInNavItem';
+import LoggedInNavItem from './LoggedInNavItem';
 // import { Icons } from '@/components/icons';
 
 const components: { title: string; href: string; description: string }[] = [
@@ -167,7 +169,7 @@ export default function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link
+                {/* <Link
                   href={token ? '/profile' : '/login'}
                   legacyBehavior
                   passHref
@@ -181,7 +183,8 @@ export default function Navbar() {
                     <User2 />
                     {token ? 'Profile' : 'Login'}
                   </NavigationMenuLink>
-                </Link>
+                </Link> */}
+                {token ? <LoggedInNavItem /> : <NotLoggedInNav />}
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href={'/orders'} legacyBehavior passHref>

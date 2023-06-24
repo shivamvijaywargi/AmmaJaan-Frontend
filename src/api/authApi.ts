@@ -22,6 +22,11 @@ export const registerUserFn = async (user: registerUserPayload) => {
   return response.data;
 };
 
+export const logoutUserFn = async () => {
+  const response = await authApi.post<IAuthResponse>('/auth/logout');
+  return response.data;
+};
+
 export const refreshAccessTokenFn = async () => {
   const response = await authApi.post<IAuthResponse>('/auth/refresh');
   return response.data;
