@@ -72,8 +72,8 @@ export default function Navbar() {
         <NavigationMenu className="justify-start max-w-7xl mx-auto">
           <NavigationMenuList className="px-2 md:pl-1 md:pr-4 flex justify-between max-w-7xl w-screen">
             {/* Mobile Nav - Hamburger Menu */}
-            <div className="flex md:block">
-              <NavigationMenuItem className="md:hidden z-10">
+            <div className="flex lg:block">
+              <NavigationMenuItem className="lg:hidden z-10">
                 <NavigationMenuTriggerNoIcon className="px-2 md:px-4">
                   <Menu />
                 </NavigationMenuTriggerNoIcon>
@@ -126,7 +126,7 @@ export default function Navbar() {
               </NavigationMenuItem>
             </div>
             {/* Mobile Nav icons */}
-            <div className="flex md:hidden">
+            <div className="flex lg:hidden">
               <NavigationMenuItem className="mr-3">
                 <Link href={'/cart'} legacyBehavior passHref>
                   <NavigationMenuLink
@@ -154,7 +154,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Nav icons */}
-            <div className="hidden md:flex text-gray-700 space-x-4">
+            <div className="hidden lg:flex text-gray-700 space-x-4">
               <NavigationMenuItem>
                 <Link href={'/wishlist'} legacyBehavior passHref>
                   <NavigationMenuLink
@@ -219,8 +219,8 @@ export default function Navbar() {
 
       {/* Second Menu with categories and other links */}
       <NavigationMenu className="justify-start max-w-7xl mx-auto">
-        <NavigationMenuList className="px-1">
-          <NavigationMenuItem className="hidden md:block">
+        <NavigationMenuList className="px-1 hidden lg:flex">
+          <NavigationMenuItem>
             <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -236,21 +236,21 @@ export default function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem className="hidden md:block">
+          <NavigationMenuItem>
             <Link href="/hot-offers" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Hot Offers
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem className="hidden md:block">
+          <NavigationMenuItem>
             <Link href="/hot-offers" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Newly Launched
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem className="hidden md:block">
+          <NavigationMenuItem>
             <Link href="/hot-offers" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Best Sellers
