@@ -1,9 +1,13 @@
 import { loginUserPayload } from '@/components/auth/Login';
 import { registerUserPayload } from '@/components/auth/Register';
-import { IAuthResponse } from '@/types';
+import { IAuthResponse, IProduct, IProductResponse } from '@/types';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api/v1';
+
+export interface IGetProductById {
+  slug: string;
+}
 
 export const authApi = axios.create({
   baseURL: BASE_URL,
@@ -29,6 +33,13 @@ export const logoutUserFn = async () => {
 
 export const refreshAccessTokenFn = async () => {
   const response = await authApi.post<IAuthResponse>('/auth/refresh');
+  return response.data;
+};
+
+export const getProductByIdFn = async (productId: IGetProductById) => {
+  const response = await authApi.get<IProductResponse>(
+    `/products/${productId}`
+  );
   return response.data;
 };
 
