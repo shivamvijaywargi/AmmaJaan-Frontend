@@ -25,7 +25,7 @@ import { useRouter } from 'next/navigation';
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8, {
-    message: 'Password must be at  least 8 characters.',
+    message: 'Password must be at least 8 characters.',
   }),
 });
 

@@ -15,16 +15,6 @@ interface IStore {
   setRequestLoading: (isLoading: boolean) => void;
 }
 
-// const useStore = create<IStore>((set) => ({
-//   authUser: null,
-//   requestLoading: false,
-//   setAuthUser: (user) => set((state) => ({ ...state, authUser: user })),
-//   setRequestLoading: (isLoading) =>
-//     set((state) => ({ ...state, requestLoading: isLoading })),
-// }));
-
-// export default useStore;
-
 const useAuthStore = create<IStore>()(
   persist(
     (set, get) => ({
