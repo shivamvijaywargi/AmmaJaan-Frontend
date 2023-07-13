@@ -4,6 +4,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { AxiosError } from 'axios';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -17,14 +20,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { loginUserFn } from '@/api/authApi';
-import { AxiosError } from 'axios';
-import { toast } from 'sonner';
 import useAuthStore from '@/stores/authStore';
-import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(8, {
+  password: z.string().trim().min(8, {
     message: 'Password must be at least 8 characters.',
   }),
 });
