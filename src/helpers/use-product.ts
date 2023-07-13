@@ -1,6 +1,6 @@
 'use client';
 
-import { IGetProductById, getProductByIdFn } from '@/api/authApi';
+import { IGetProductById, getProductByIdFn } from '@/api/productApi';
 import { IProductResponse } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 

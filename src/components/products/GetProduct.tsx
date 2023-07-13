@@ -1,6 +1,6 @@
 'use client';
 
-import { IGetProductById } from '@/api/authApi';
+import { IGetProductById } from '@/api/productApi';
 import { useProduct } from '@/helpers/use-product';
 import Image from 'next/image';
 import React from 'react';

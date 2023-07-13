@@ -1,4 +1,4 @@
-import { getProductByIdFn } from '@/api/authApi';
+import { getProductByIdFn } from '@/api/productApi';
 import GetProduct from '@/components/products/GetProduct';
 import { IProduct } from '@/types';
 import { useQuery } from '@tanstack/react-query';
