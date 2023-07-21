@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { IAuthResponse } from '@/types';
 
@@ -36,5 +36,7 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export { AxiosError };
 
 export default axiosInstance;

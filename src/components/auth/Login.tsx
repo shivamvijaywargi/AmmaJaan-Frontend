@@ -1,11 +1,9 @@
 'use client';
 
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { AxiosError } from 'axios';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -18,9 +16,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import { loginUserFn } from '@/api/authApi';
 import useAuthStore from '@/stores/authStore';
+import { AxiosError } from '@/api/axiosInstance';
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -43,37 +41,31 @@ const Login = () => {
     },
   });
 
-  const { mutate: loginUser, isLoading } = useMutation(
-    (variables: loginUserPayload) => loginUserFn(variables),
-    {
-      onMutate() {
-        store.setRequestLoading(true);
-      },
-      onSuccess: (data) => {
-        store.setRequestLoading(false);
-        store.setAuthUser({
-          accessToken: data?.accessToken,
-          role: data?.user?.role,
-        });
-        toast.success('Login successful');
-        router.push('/');
-      },
-      onError: (error) => {
-        store.setRequestLoading(false);
-        if (error instanceof AxiosError) {
-          if (error.response?.status === 400) {
-            toast.error('Invalid email or password');
-          }
-        }
-        toast.error('Something went wrong, please try again later.');
-      },
-    }
-  );
-
   async function onSubmit(values: loginUserPayload) {
-    const data = loginUser(values);
+    try {
+      const data = await loginUserFn(values);
 
-    return data;
+      store.setRequestLoading(false);
+
+      store.setAuthUser({
+        accessToken: data?.accessToken,
+        role: data?.user?.role,
+      });
+
+      toast.success('Login successful');
+
+      router.push('/');
+    } catch (error) {
+      store.setRequestLoading(false);
+
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error('Invalid email or password');
+        }
+      }
+
+      toast.error('Something went wrong, please try again later.');
+    }
   }
 
   return (
@@ -114,7 +106,7 @@ const Login = () => {
             )}
           />
         </div>
-        <Button type="submit" className="w-full" isLoading={isLoading}>
+        <Button type="submit" className="w-full">
           Login
         </Button>
       </form>
