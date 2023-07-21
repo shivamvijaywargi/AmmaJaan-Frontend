@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -33,6 +34,8 @@ const Login = () => {
   const store = useAuthStore();
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<loginUserPayload>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,21 +45,29 @@ const Login = () => {
   });
 
   async function onSubmit(values: loginUserPayload) {
+    setIsLoading(true);
+
     try {
       const data = await loginUserFn(values);
 
-      store.setRequestLoading(false);
+      if (data.success) {
+        setIsLoading(false);
 
-      store.setAuthUser({
-        accessToken: data?.accessToken,
-        role: data?.user?.role,
-      });
+        store.setRequestLoading(false);
 
-      toast.success('Login successful');
+        store.setAuthUser({
+          accessToken: data?.accessToken,
+          role: data?.user?.role,
+        });
 
-      router.push('/');
+        toast.success('Login successful');
+
+        router.push('/');
+      }
     } catch (error) {
       store.setRequestLoading(false);
+
+      setIsLoading(false);
 
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
@@ -106,7 +117,7 @@ const Login = () => {
             )}
           />
         </div>
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" isLoading={isLoading}>
           Login
         </Button>
       </form>

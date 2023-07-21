@@ -1,8 +1,10 @@
 'use client';
 
-import React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ZodError, z } from 'zod';
+import { z } from 'zod';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/components/ui/button';
@@ -15,12 +17,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import { registerUserFn } from '@/api/authApi';
-import { AxiosError } from 'axios';
-import { toast } from 'sonner';
 import useAuthStore from '@/stores/authStore';
-import { useRouter } from 'next/navigation';
+import { AxiosError } from '@/api/axiosInstance';
 
 const formSchema = z.object({
   fullName: z
@@ -44,6 +43,8 @@ const Register = () => {
   const store = useAuthStore();
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<registerUserPayload>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,44 +55,45 @@ const Register = () => {
     },
   });
 
-  const { mutate: registerUser, isLoading } = useMutation(
-    (variables: registerUserPayload) => registerUserFn(variables),
-    {
-      onMutate() {
-        store.setRequestLoading(true);
-      },
-      onSuccess: (data) => {
+  async function onSubmit(values: registerUserPayload) {
+    setIsLoading(true);
+
+    try {
+      const data = await registerUserFn(values);
+
+      if (data.success) {
+        setIsLoading(false);
+
         store.setRequestLoading(false);
+
         store.setAuthUser({
           accessToken: data?.accessToken,
           role: data?.user?.role,
         });
+
         toast.success('Registration successful');
+
         router.push('/');
-      },
-      onError: (error) => {
-        store.setRequestLoading(false);
-        if (error instanceof AxiosError) {
-          if (error.response?.status === 400) {
-            toast.error(error.response.data?.message);
-          }
+      }
+    } catch (error) {
+      store.setRequestLoading(false);
+
+      setIsLoading(false);
+
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          toast.error(error.response.data?.message);
         }
+      }
 
-        let myError: any = error;
+      let myError: any = error;
 
-        if (myError?.name) {
-          toast.error(myError?.issues[0].message);
-        }
+      if (myError?.name) {
+        toast.error(myError?.issues[0].message);
+      }
 
-        toast.error('Something went wrong, please try again later.');
-      },
+      toast.error('Something went wrong, please try again later.');
     }
-  );
-
-  async function onSubmit(values: registerUserPayload) {
-    const data = registerUser(values);
-
-    return data;
   }
 
   return (
