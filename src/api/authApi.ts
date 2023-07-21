@@ -1,6 +1,7 @@
 import { loginUserPayload } from '@/components/auth/Login';
 import { registerUserPayload } from '@/components/auth/Register';
 import { IAuthResponse } from '@/types';
+
 import axiosInstance from './axiosInstance';
 
 export const loginUserFn = async (user: loginUserPayload) => {

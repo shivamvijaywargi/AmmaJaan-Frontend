@@ -1,9 +1,8 @@
-import Login from '@/components/auth/Login';
-import Register from '@/components/auth/Register';
-import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
+
+import Register from '@/components/auth/Register';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Create an AmmaJaan account',

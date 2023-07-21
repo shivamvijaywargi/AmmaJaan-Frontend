@@ -1,12 +1,13 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
+
 import {
   IGetProductById,
   getAllProductsFn,
   getProductByIdFn,
 } from '@/api/productApi';
 import { IProductResponse } from '@/types';
-import { useQuery } from '@tanstack/react-query';
 
 const getAllProducts = async (): Promise<IProductResponse[]> => {
   const res = await getAllProductsFn();
