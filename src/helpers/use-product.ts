@@ -9,11 +9,11 @@ import {
 } from '@/api/productApi';
 import { IProductResponse } from '@/types';
 
-const getAllProducts = async (): Promise<IProductResponse[]> => {
-  const res = await getAllProductsFn();
+// const getAllProducts = async (): Promise<IProductResponse[]> => {
+//   const res = await getAllProductsFn();
 
-  return res;
-};
+//   return res;
+// };
 
 const getProductDetailsById = async (
   slug: IGetProductById
@@ -23,11 +23,11 @@ const getProductDetailsById = async (
   return res;
 };
 
-export const useProducts = () => {
-  return useQuery<IProductResponse[], Error>(['products'], () =>
-    getAllProducts()
-  );
-};
+// export const useProducts = () => {
+//   return useQuery<IProductResponse[], Error>(['products'], () =>
+//     getAllProducts()
+//   );
+// };
 
 export const useProduct = (slug: IGetProductById) => {
   return useQuery<IProductResponse, Error>(['productbyid', slug], () =>

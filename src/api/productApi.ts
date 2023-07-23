@@ -1,4 +1,4 @@
-import { IProductResponse } from '@/types';
+import { IProductResponse, IProductsResponse } from '@/types';
 import axiosInstance from './axiosInstance';
 
 export interface IGetProductById {
@@ -6,9 +6,9 @@ export interface IGetProductById {
 }
 
 export const getAllProductsFn = async () => {
-  const response = await axiosInstance.get<IProductResponse[]>('/products');
+  const response = await axiosInstance.get<IProductsResponse>('/products');
 
-  return response.data;
+  return response;
 };
 
 export const getProductByIdFn = async (productId: IGetProductById) => {
