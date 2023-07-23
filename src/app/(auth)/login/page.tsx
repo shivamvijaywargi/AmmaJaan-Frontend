@@ -2,7 +2,6 @@ import Login from '@/components/auth/Login';
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Sign in to AmmaJaan',

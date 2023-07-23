@@ -1,6 +1,5 @@
 import { getAllProductsFn } from '@/api/productApi';
 import ProductCard from '@/components/products/ProductCard';
-import Image from 'next/image';
 
 const productsPage = async () => {
   const data = await getAllProductsFn();
@@ -15,9 +14,7 @@ const productsPage = async () => {
         <div className="container px-0 py-12 mx-auto">
           <div className="flex flex-wrap -m-4">
             {data?.data?.products?.map((product) => (
-              // <div key={product._id}>
               <ProductCard key={product._id} product={product} />
-              // </div>
             ))}
           </div>
         </div>

@@ -1,4 +1,3 @@
-import { getProductByIdFn } from '@/api/productApi';
 import ProductViewPage from '@/components/products/ProductViewPage';
 
 interface IProps {
