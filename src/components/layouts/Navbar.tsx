@@ -244,14 +244,14 @@ export default function Navbar() {
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/hot-offers" legacyBehavior passHref>
+            <Link href="/newly-launched" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Newly Launched
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/hot-offers" legacyBehavior passHref>
+            <Link href="/best-sellers" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Best Sellers
               </NavigationMenuLink>
