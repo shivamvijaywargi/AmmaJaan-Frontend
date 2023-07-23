@@ -10,8 +10,6 @@ type Props = {
 const ProductViewPage = async (props: Props) => {
   const data = await getProductByIdFn(props.slug);
 
-  console.log(data);
-
   if (!data.success) {
     toast.error(data.message);
     return;
