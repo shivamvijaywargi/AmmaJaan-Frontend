@@ -31,7 +31,7 @@ export interface IProductsResponse {
 export interface IProductResponse {
   success: boolean;
   message: string;
-  products: IProduct;
+  product: IProduct;
 }
 
 export interface IProduct {

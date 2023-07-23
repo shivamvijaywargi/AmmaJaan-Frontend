@@ -1,27 +1,26 @@
-'use client';
-
-import { IGetProductById } from '@/api/productApi';
-import { useProduct } from '@/helpers/use-product';
+import { IGetProductById, getProductByIdFn } from '@/api/productApi';
 import Image from 'next/image';
 import React from 'react';
+import { toast } from 'sonner';
 
 type Props = {
   slug: string;
 };
 
-const GetProduct = (props: Props) => {
-  const { isLoading, error, data } = useProduct(
-    props.slug as unknown as IGetProductById
-  );
+const ProductViewPage = async (props: Props) => {
+  const data = await getProductByIdFn(props.slug);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  console.log(data);
 
-  if (error) return <h2>{error.message}</h2>;
+  if (!data.success) {
+    toast.error(data.message);
+    return;
+  }
 
   return (
     <div className="lg:w-5/6 mx-auto flex flex-wrap">
       <Image
-        alt="ecommerce"
+        alt={data.product?.title}
         className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
         src={
           data.success
@@ -33,10 +32,10 @@ const GetProduct = (props: Props) => {
       />
       <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 className="text-sm title-font text-gray-500 tracking-widest">
-          {data.product.category}
+          {data.product?.category?.name}
         </h2>
         <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-          {data.product.title}
+          {data.product?.title}
         </h1>
         {/* Reviews count, stars and social buttons */}
         {/* <div className="flex mb-4">
@@ -137,19 +136,19 @@ const GetProduct = (props: Props) => {
             </a>
           </span>
         </div> */}
-        <p className="leading-relaxed">{data.product.description}</p>
+        <p className="leading-relaxed">{data.product?.description}</p>
         <div className="flex mt-6">
           <span className="title-font font-medium text-2xl text-gray-900">
             ₹{' '}
-            {data.product.discountedPrice ? (
+            {data.product?.discountedPrice ? (
               <>
                 <span className="decoration-slice">
-                  {data.product.originalPrice}
+                  {data.product?.originalPrice}
                 </span>
-                <span>{data.product.discountedPrice}</span>
+                <span>{data.product?.discountedPrice}</span>
               </>
             ) : (
-              data.product.originalPrice
+              data.product?.originalPrice
             )}
           </span>
           <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
@@ -173,4 +172,4 @@ const GetProduct = (props: Props) => {
   );
 };
 
-export default GetProduct;
+export default ProductViewPage;

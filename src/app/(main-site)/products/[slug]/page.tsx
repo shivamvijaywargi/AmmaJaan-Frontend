@@ -1,9 +1,5 @@
 import { getProductByIdFn } from '@/api/productApi';
-import GetProduct from '@/components/products/GetProduct';
-import { IProduct } from '@/types';
-import { useQuery } from '@tanstack/react-query';
-import { notFound } from 'next/navigation';
-import React from 'react';
+import ProductViewPage from '@/components/products/ProductViewPage';
 
 interface IProps {
   params: {
@@ -11,13 +7,11 @@ interface IProps {
   };
 }
 
-const ProductPage = ({ params }: IProps) => {
-  console.log(params.slug);
-
+const ProductPage = async ({ params }: IProps) => {
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="px-5 py-24">
-        <GetProduct slug={params.slug} />
+        <ProductViewPage slug={params.slug} />
       </div>
     </section>
   );

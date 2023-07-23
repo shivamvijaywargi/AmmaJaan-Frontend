@@ -11,7 +11,7 @@ export const getAllProductsFn = async () => {
   return response;
 };
 
-export const getProductByIdFn = async (productId: IGetProductById) => {
+export const getProductByIdFn = async (productId: string) => {
   const response = await axiosInstance.get<IProductResponse>(
     `/products/${productId}`
   );

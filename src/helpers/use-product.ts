@@ -15,13 +15,13 @@ import { IProductResponse } from '@/types';
 //   return res;
 // };
 
-const getProductDetailsById = async (
-  slug: IGetProductById
-): Promise<IProductResponse> => {
-  const res = await getProductByIdFn(slug);
+// const getProductDetailsById = async (
+//   slug: IGetProductById
+// ): Promise<IProductResponse> => {
+//   const res = await getProductByIdFn(slug);
 
-  return res;
-};
+//   return res;
+// };
 
 // export const useProducts = () => {
 //   return useQuery<IProductResponse[], Error>(['products'], () =>
@@ -29,8 +29,8 @@ const getProductDetailsById = async (
 //   );
 // };
 
-export const useProduct = (slug: IGetProductById) => {
-  return useQuery<IProductResponse, Error>(['productbyid', slug], () =>
-    getProductDetailsById(slug)
-  );
-};
+// export const useProduct = (slug: IGetProductById) => {
+//   return useQuery<IProductResponse, Error>(['productbyid', slug], () =>
+//     getProductDetailsById(slug)
+//   );
+// };
