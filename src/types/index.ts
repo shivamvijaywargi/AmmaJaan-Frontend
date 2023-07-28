@@ -62,15 +62,13 @@ export interface IProduct {
     createdAt: string;
     updatedAt: string;
   };
-  images: [
-    {
-      image: {
-        public_id: string;
-        secure_url: string;
-      };
-      _id: string;
-    }
-  ];
+  images: {
+    image: {
+      public_id: string;
+      secure_url: string;
+    };
+    _id: string;
+  }[];
   createdAt: string;
   updatedAt: string;
 }
