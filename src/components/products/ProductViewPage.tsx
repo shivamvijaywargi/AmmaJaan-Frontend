@@ -1,7 +1,8 @@
-import { IGetProductById, getProductByIdFn } from '@/api/productApi';
-import Image from 'next/image';
-import React from 'react';
-import { toast } from 'sonner';
+import { IGetProductById, getProductByIdFn } from "@/api/productApi";
+import numberFormatter from "@/helpers/numberFormatter";
+import Image from "next/image";
+import React from "react";
+import { toast } from "sonner";
 
 type Props = {
   slug: string;
@@ -23,7 +24,7 @@ const ProductViewPage = async (props: Props) => {
         src={
           data.success
             ? data.product?.images[0]?.image?.secure_url
-            : 'https://dummyimage.com/400x400'
+            : "https://dummyimage.com/400x400"
         }
         height={400}
         width={400}
@@ -137,16 +138,16 @@ const ProductViewPage = async (props: Props) => {
         <p className="leading-relaxed">{data.product?.description}</p>
         <div className="flex mt-6">
           <span className="title-font font-medium text-2xl text-gray-900">
-            ₹{' '}
+            ₹
             {data.product?.discountedPrice ? (
               <>
-                <span className="decoration-slice">
-                  {data.product?.originalPrice}
+                <span>{numberFormatter(data.product?.discountedPrice)}</span>
+                <span className="decoration-slice line-through text-sm text-gray-400 pl-2">
+                  ₹{numberFormatter(data.product?.originalPrice)}
                 </span>
-                <span>{data.product?.discountedPrice}</span>
               </>
             ) : (
-              data.product?.originalPrice
+              numberFormatter(data.product?.originalPrice)
             )}
           </span>
           <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
