@@ -1,4 +1,4 @@
-import { IGetProductById, getProductByIdFn } from "@/api/productApi";
+import { getProductByIdFn } from "@/api/productApi";
 import numberFormatter from "@/helpers/numberFormatter";
 import Image from "next/image";
 import React from "react";

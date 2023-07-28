@@ -1,7 +1,7 @@
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
 
-import { IProduct } from '@/types';
-import Link from 'next/link';
+import { IProduct } from "@/types";
 
 const ProductCard = ({ product }: { product: IProduct }) => {
   return (
@@ -26,7 +26,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
               {product.title}
             </h2>
             <p className="mt-1">
-              &#8377;{' '}
+              &#8377;{" "}
               {product.discountedPrice
                 ? product.discountedPrice
                 : product.originalPrice}
